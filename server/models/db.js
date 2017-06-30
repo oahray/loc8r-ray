@@ -4,10 +4,10 @@ var env = process.env.NODE_ENV || 'development';
 console.log('ENV: **** ', env);
 
 mongoose.Promise = global.Promise;
-var dbURI;
-if (process.env.MONGODB_URI) {
-  dbURI = process.env.MONGODB_URI;
-} else {
+var dbURI = process.env.MONGODB_URI;
+console.log('dbURI: ', dbURI);
+
+if (!dbURI) {
   dbURI = require('../../secret/config.json')[env].MONGODB_URI;
 }
 
