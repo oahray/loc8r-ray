@@ -4,14 +4,15 @@ var env = process.env.NODE_ENV || 'development';
 console.log('ENV: **** ', env);
 
 mongoose.Promise = global.Promise;
-var dbURI = process.env.MONGODB_URI;
-console.log('dbURI: ', dbURI);
+var dbURI;
 
-if (!dbURI) {
+if (env!=='production') {
   dbURI = require('../../secret/config.json')[env].MONGODB_URI;
 }
 
-mongoose.connect(dbURI);
+console.log(dbURI);
+
+mongoose.connect(process.env.MONGODB_URI || dbURI);
 
 mongoose.connection.on('connected', function () {
   console.log(`Mongoose connected to ${dbURI}`);
