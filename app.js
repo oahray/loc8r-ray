@@ -1,10 +1,12 @@
+require('./server/models/db');
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-require('./server/models/db');
+
 
 var index = require('./server/routes/index');
 var users = require('./server/routes/users');

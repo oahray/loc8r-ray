@@ -7,7 +7,7 @@ mongoose.Promise = global.Promise;
 var dbURI = process.env.MONGODB_URI;
 console.log('dbURI: ', dbURI);
 
-if (!dbURI) {
+if (env === 'development') {
   dbURI = require('../../secret/config.json')[env].MONGODB_URI;
 }
 
