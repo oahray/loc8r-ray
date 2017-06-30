@@ -4,7 +4,12 @@ var env = process.env.NODE_ENV || 'development';
 console.log('ENV: **** ', env);
 
 mongoose.Promise = global.Promise;
-var dbURI = process.env.MONGODB_URI || require('../../secret/config.json')[env].MONGODB_URI;
+var dbURI;
+if (process.env.MONGODB_URI) {
+  dbURI = process.env.MONGODB_URI;
+} else {
+  dbURI = require('../../secret/config.json')[env].MONGODB_URI;
+}
 
 mongoose.connect(dbURI);
 
